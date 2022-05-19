@@ -1,0 +1,65 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body{
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: whitesmoke;
+}
+
+
+header {
+  text-align: center;
+  padding: 16px;
+  padding-top: 20px;
+  font-size: 70%;
+  color: black
+  font-weight: lighter;
+}
+
+.intro {
+  text-align: center;
+}
+
+.btn {
+  border: none;
+  background-color: black;
+  border-radius: 6px;
+  box-shadow: 1px 1px 2px 1px rgb(0 0 0 / 45%);
+  color: white;
+  display: inline-block;
+  font-size: 22px;
+  margin: 20px 16px 16px 20px;
+  padding: 16px 40px;
+  text-align: center;
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>🧠</text></svg>") 16 0,auto; /*!emojicursor.app*/;
+}
+
+button[disabled] {
+  background: #c0c7cf;
+}
+
+
+/* @media (max-width: 500px) {
+  .btn {
+    font-size: 1rem;
+    margin: 16px 0px 0px 0px;
+    padding: 10px 15px;
+    width: 100%;
+  }
+
+  #password {
+    font-size: 1.2em;
+    margin-bottom: 2em;
+
+  }
+} */
