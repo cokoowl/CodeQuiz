@@ -1,83 +1,151 @@
-// Assignment Code
-
 //homescreen to launch quiz
-let quizBtn = document.getElementById("startQuiz");
+const rootEl = document.getElementById('root');
+let quizBtn = document.getElementById('startQuiz');
+let timerEl = document.getElementById('timer');
+let timeLeft = 30;
+let answerList = document.getElementById('answerList');
+let feedback = document.getElementById('feedback');
 
-// click on the start button to start quiz
-// answer buttons and question will be hidden initially
-quizBtn.addEventListener("click", function (event)) {
-event.defaultPrevented();
+let resultContent = document.getElementById('result');
+let quizContent = document.getElementById('quiz');
+let welcomeScreen = document.getElementById('welcomeScreen');
+
+let questionPrompt = document.getElementById('question');
+let score = 0;
+
+quizContent.style.display = 'none';
+resultContent.style.display = 'none';
+
+//quiz questions in array
+let currentQuestionIndex = 0;
+
+const questions = [
+  {
+    ask: 'Commonly used data types DO NOT include:',
+    choices: ['strings', 'booleans', 'alerts', 'numbers'],
+    answer: 'alerts'
+  },
+  {
+    ask: 'The condition in an if/else statement is enclosed within _____.',
+    choices: ['" "', '{ }', '( )', '[ ]'],
+    answer: '( )'
+  },
+  {
+    ask: 'Arrays in JavaScript can be used to store  _____.',
+    choices: ['numbers and strings', 'other arrays', 'booleans', 'all of the above'],
+    answer: 'all of the above'
+  },
+  {
+    ask: 'String values must be enclosed wihin _____ when being assigned to variable.',
+    choices: [',', '{ }', '" "', '( )'],
+    answer: '" "'
+  },
+  {
+    ask: 'A very useful tool used during development and debugging for printing content to the debugger is:',
+    choices: ['JavaScript', 'terminal/bash', 'for loops', 'console log'],
+    answer: 'console log'
+  }
+];
+
+// timer function
+function setTime() {
+  var timerInterval = setInterval(function () {
+    timeLeft--;
+    timerEl.textContent = timeLeft;
+
+    if (timeLeft === 0) {
+      // Stops execution of action at set interval
+      clearInterval(timerInterval);
+      // Calls function
+      // return;
+    }
+
+  }, 1500);
+}
 
 
+//start button > start the quiz and timer
+quizBtn.addEventListener('click', function () {
+  console.log(quizBtn);
+  startQuiz();
+  setTime();
+  quizBtn.style.display = 'none';
+  welcomeScreen.style.display = 'none';
+  quizContent.style.display = 'block';
+}, 1000);
 
+//function to generate the quiz
+function startQuiz() {
+  displayQuestions();
+};
 
+// displayQuestion function: goes through all 5 questions
+function displayQuestions() {
+  questionPrompt.innerText = questions[currentQuestionIndex].ask;
+
+  for (let i = 0; i < questions[currentQuestionIndex].choices.length; i++) {
+    let answerButton = document.createElement("button");
+    answerButton.textContent = questions[currentQuestionIndex].choices[i];
+    answerButton.className = "choices"
+    answerButton.classList.add("choices");
+    answerList.appendChild(answerButton);
+  }
 
 
 }
 
+function removeChoices() {
+  let choicesEl = document.querySelectorAll(".choices");
+  for (let i = 0; i < choicesEl.length; i++) {
+    choicesEl[i].remove()
+  };
+};
+
+let choicesEl = document.querySelector('.choices')
+
+answerList.addEventListener("click", function (event) {
+  console.log(event);
+  if (event.target.classList.contains('choices')) {
+    const choices = event.target.textContent;
+    if (choices === questions[currentQuestionIndex].answer) {
+      console.log('correct');
+      feedback.textContent = "correct";
+      score +=2; //number arbiturary
+    } else {
+      console.log('incorrect');
+      timeLeft -= 5;
+      feedback.textContent = "incorrect";
+    };
+    if (currentQuestionIndex < questions.length-1) {
+      currentQuestionIndex++;
+      removeChoices();
+      displayQuestions();
+    } else {
+      //stop the timer
+      quizContent.style.display = 'none';
+      resultContent.style.display = 'block';
+      //need to end game. quiz div display none. 
+      //show score board. have an element to show total. save button to trigger local storage (write). button in form will cause a page refresh (default). have to do prevent. 
+      //need another array (ie. scores). array of object (name and score). push that object to array of score and save score arrays to local storage. 
+      //button to view scoreboard (will look to local storage). then print to page. 
+      //form function 
+    }
+  }
+})
+
+// function take input, 
+
+//make form function 
+
+// click on the start button to start quiz
+// answer buttons and question will be hidden initially
+//timer will run
 
 
 // content change to first question with 4 options
 //timer starts to run
-
 //click on button will log true/false as answer
-//any click will take user to next question, if answer wrong, time will be deducted
-
+//true will take user to next question, if answer wrong, time will be deducted THEN take user to next question
 //when all questions are answered, or the timer reaches 0, then game is over
-
-
 //when game is over, save initial and score
-
 // initial and scores will be store in localStorage
-
-
-
-//questions to be asked
-const questions = [{
-  id: set1,
-  ask: "Commonly used data types DO NOT include:"
-answer: [{ text: "strings", isCorrect: false },
-  { text: "booleans", isCorrect: false },
-  { text: "alerts", isCorrect: true },
-  { text: "numbers", isCorrect: false }
-  ]
-},
-{
-  id: set2,
-  ask: "The condition in an if/else statement is enclosed within _____."
-answer: [{ text: "quotes", isCorrect: false },
-  { text: "curly brackets", isCorrect: false },
-  { text: "parentheses", isCorrect: true },
-  { text: "square brackets", isCorrect: false }
-  ]
-},
-{
-  id: set3,
-  ask: "Arrays in JavaScript can be used to store  _____."
-  answer: [{ text: "numbers and strings", isCorrect: false },
-  { text: "other arrays", isCorrect: false },
-  { text: "booleans", isCorrect: false },
-  { text: "all of the above", isCorrect: true }
-  ]
-},
-{
-  id: set4,
-  ask: "String values must be enclosed within _____ when being assigned to variables."
-    answer: [{ text: "commas", isCorrect: false },
-  { text: "curly brackets", isCorrect: false },
-  { text: "quotes", isCorrect: true },
-  { text: "parentheses", isCorrect: false }
-  ]
-},
-{
-  id: set5,
-  ask: "A very useful tool used during development and debugging for printing content to the debugger is:"
-    answer: [{ text: "JavaScript", isCorrect: false },
-  { text: "terminal/bash", isCorrect: false },
-  { text: "for loops", isCorrect: false },
-  { text: "console log", isCorrect: true }
-  ]
-},
-
-
-}]

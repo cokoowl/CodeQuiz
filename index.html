@@ -3,37 +3,40 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport"
-    content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>Code Quiz</title>
   <link rel="stylesheet" href="./assets/style.css" />
 </head>
 
 <body>
-  <header>
-    <h1>coding quiz challenge</h1>
-  </header>
-
-  <div class="intro">
-    <p>Answer the following questions before time runs out.
-      Note that incorrect answers will cause significant
-      time to be deducted.</p>
+  <div id="welcomeScreen">
+    <h1 id="title">coding quiz</h1>
+    <p id="subtitle">Answer the following questions before time runs out. Note that incorrect answers will cause
+      significant time to be deducted.</p>
 
     <button id="startQuiz" class="btn">start quiz</button>
   </div>
 
-  <div id="quiz">
-    <p id="question"></p>
-    <div>
-      <button id="answer1" data-state="hide" class="btn"></button>
-      <button id="answer2" data-state="hide" class="btn"></button>
-      <button id="answer3" data-state="hide" class="btn"></button>
-      <button id="answer4" data-state="hide" class="btn"></button>
-    </div>
+  <div id='quiz'>
+    <p id='timer'></p>
+    <div id="question"></div>
+    <div id="answerList"></div>
+    <div id="feedback"></div>
+  </div>
+
+  <div id="result">
+    <form>
+      <p></p>
+      <label for="name">enter name</label>
+      <input type='text' name='name' id="name">
+    </form>
+    <button type="submit" value="Submit">Submit</button>
+    <p id='score'></p>
   </div>
 
 
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="./assets/script.js"></script>
 </body>
 

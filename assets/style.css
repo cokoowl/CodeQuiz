@@ -16,37 +16,39 @@ body {
   background-color: whitesmoke;
 }
 
+#welcomeScreen, #quiz {
+  padding-top: 3em;
+}
 
-header {
+h1, p {
   text-align: center;
-  padding: 16px;
-  padding-top: 20px;
-  font-size: 70%;
   color: black
-  font-weight: lighter;
 }
 
-.intro {
-  text-align: center;
+#timer {
+  /* position: fixed; */
 }
 
-.btn {
-  border: none;
-  background-color: black;
+/* make quize div   
+display: flex; */
+
+button {
+  border: 1px solid black;
+  background-color: white;
   border-radius: 6px;
   box-shadow: 1px 1px 2px 1px rgb(0 0 0 / 45%);
-  color: white;
+  color: black;
   display: inline-block;
-  font-size: 22px;
+  font-size: 16px;
   margin: 20px 16px 16px 20px;
-  padding: 16px 40px;
+  padding: 12px 32px;
   text-align: center;
   cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>🧠</text></svg>") 16 0,auto; /*!emojicursor.app*/;
 }
 
-button[disabled] {
+/* button[disabled] {
   background: #c0c7cf;
-}
+} */
 
 
 /* @media (max-width: 500px) {
