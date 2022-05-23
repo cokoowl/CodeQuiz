@@ -20,7 +20,7 @@ body {
   padding-top: 3em;
 }
 
-h1, p {
+h1, p, #result {
   text-align: center;
   color: black
 }

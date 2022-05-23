@@ -1,8 +1,9 @@
 //homescreen to launch quiz
 const rootEl = document.getElementById('root');
 let quizBtn = document.getElementById('startQuiz');
+let submitBtn = document.getElementById('submitBtn');
 let timerEl = document.getElementById('timer');
-let timeLeft = 30;
+let timeLeft = 20; //remember to change
 let answerList = document.getElementById('answerList');
 let feedback = document.getElementById('feedback');
 
@@ -13,6 +14,8 @@ let welcomeScreen = document.getElementById('welcomeScreen');
 let scoreOutput = document.getElementById('score');
 let questionPrompt = document.getElementById('question');
 let score = 0;
+
+let nameInput = document.getElementById('nameInput');
 
 quizContent.style.display = 'none';
 resultContent.style.display = 'none';
@@ -100,10 +103,9 @@ function displayQuestions() {
     answerButton.classList.add("choices");
     answerList.appendChild(answerButton);
   }
-
-
 }
 
+// remove existing button choices on screen before new ones appear
 function removeChoices() {
   let choicesEl = document.querySelectorAll(".choices");
   for (let i = 0; i < choicesEl.length; i++) {
@@ -113,6 +115,8 @@ function removeChoices() {
 
 let choicesEl = document.querySelector('.choices')
 
+
+// choosing anwers and ending the quiz content
 answerList.addEventListener("click", function (event) {
   console.log(event);
   if (event.target.classList.contains('choices')) {
@@ -131,36 +135,128 @@ answerList.addEventListener("click", function (event) {
       removeChoices();
       displayQuestions();
     } else {
-      //stop the timer
+      //stop the timer & hide quiz content
       quizContent.style.display = 'none';
       resultContent.style.display = 'block';
-      scoreOutput.innerHTML = score;
-      //need to end game. quiz div display none. 
+      //print score
+      scoreOutput.innerHTML = "final score is " + score;
+
+      //enter username and push username + score to local storage
+      // submitScore();
+
+
+    }
+  }
+})
+
+// function submitScore() {
+// nameInput.addEventListener('input', name => {
+//   console.log('clickeddd');
+//   let username = document.getElementById('username');
+//   nameInput.textContent = name.target.value;
+// })
+
+// function getScores() {
+//   //check local storage for scores array
+//   let scores = localStorage.getItem(JSON.parse('userScores'));
+//   //if scores exist, return the array
+//   if ('userScores') {
+//     return 'userScores';
+//   } else {
+//     //else return empty array
+//     userScores = [];
+//     return userScores;
+//   }
+// }
+
+function userScore() {
+  let user = {
+    name: nameInput,
+    score: score,
+};
+localStorage.setItem('user', JSON.stringify(nameInput));
+renderScoreBoard();
+}
+
+function renderScoreBoard() {
+  let userScore = JSON.parse(localStorage.getItem('user'));
+}
+
+submitBtn.addEventListener('click', function(event) {
+  event.preventDefault();
+userScore();
+renderScoreBoard();
+console.log(submitBtn);
+});
+
+
+
+// let nameInput = document.querySelector('#nameinput').value;
+// if (nameInput === "") {
+//   displayMessage("name cannot be blank");
+// } else {
+// displayMessage("input captured");
+// };
+// });
+
+//   userScores.push(user);
+//   localStorage.setItem("scores", JSON.stringify(userScores));
+//   window.location.reload();
+  
+//   }
+
+//   console.log(submitBtn);
+
+// });
+
+//save to local storage
+// let userInfoArr = [];
+
+// function saveToLocal() {
+//   localStorage.setItem ('userScore', nameInput.textContent);
+//   console.log(submitBtn);
+// };
+
+// submitBtn.addEventListener('click', function(event) {
+//   event.preventDefault();
+
+//   let userInfo = {
+//     name: nameInput,
+//     score: score,
+//   };
+
+//   localStorage.setItem ('userScore', nameInput.textContent);
+
+// });
+
+
+// for (let i=0; i < userInfoArr; i++) {
+//   if (userInfoArr.score > userInfoArr[i].score) {
+//     userInfoArr.splice(i, 0, userInfoArr);
+//   }
+
+//   else {
+//   userInfoArr.push(hsObj);
+//   localStorage.setItem('userScore', JSON.stringify(userInfoArr));
+//   }
+// };
+
+
+// hsArr = [];
+
+
 
       //show score board. have an element to show total. save button to trigger local storage (write). button in form will cause a page refresh (default). have to do prevent. 
       //need another array (ie. scores). array of object (name and score). push that object to array of score and save score arrays to local storage. 
       //button to view scoreboard (will look to local storage). then print to page. 
       //form function 
-    }
-  }
-})
-
-function submitScore() {
-  let user = {
-    name: document.getElementsByTagName("input").value,
-    score: score,
-  }
-score.push(user);
-localStorage.setItem("scores", JSON.stringify(score));
-window.location.reload();
-}
 
 
 
 
 
 
-init();
+// init();
 // function getScores() {
 //   //check local storage for scores array
 //   let score = 
