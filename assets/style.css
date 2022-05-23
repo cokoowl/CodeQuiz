@@ -28,7 +28,9 @@ h1, p {
 #timer {
   /* position: fixed; */
 }
-
+#result {
+  margin: 3em;
+}
 /* make quize div   
 display: flex; */
 

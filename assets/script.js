@@ -10,6 +10,7 @@ let resultContent = document.getElementById('result');
 let quizContent = document.getElementById('quiz');
 let welcomeScreen = document.getElementById('welcomeScreen');
 
+let scoreOutput = document.getElementById('score');
 let questionPrompt = document.getElementById('question');
 let score = 0;
 
@@ -46,6 +47,15 @@ const questions = [
     answer: 'console log'
   }
 ];
+
+//reset the settings for start of new game 
+function init() {
+  //set global variables to starting
+  score = getScores();
+  timeLeft = 0;
+  score = 0;
+  currentQuestionIndex = 0;
+}
 
 // timer function
 function setTime() {
@@ -110,13 +120,13 @@ answerList.addEventListener("click", function (event) {
     if (choices === questions[currentQuestionIndex].answer) {
       console.log('correct');
       feedback.textContent = "correct";
-      score +=2; //number arbiturary
+      score += 2; //number arbiturary
     } else {
       console.log('incorrect');
-      timeLeft -= 5;
+      timeLeft -= 2;
       feedback.textContent = "incorrect";
     };
-    if (currentQuestionIndex < questions.length-1) {
+    if (currentQuestionIndex < questions.length - 1) {
       currentQuestionIndex++;
       removeChoices();
       displayQuestions();
@@ -124,7 +134,9 @@ answerList.addEventListener("click", function (event) {
       //stop the timer
       quizContent.style.display = 'none';
       resultContent.style.display = 'block';
+      scoreOutput.innerHTML = score;
       //need to end game. quiz div display none. 
+
       //show score board. have an element to show total. save button to trigger local storage (write). button in form will cause a page refresh (default). have to do prevent. 
       //need another array (ie. scores). array of object (name and score). push that object to array of score and save score arrays to local storage. 
       //button to view scoreboard (will look to local storage). then print to page. 
@@ -132,6 +144,28 @@ answerList.addEventListener("click", function (event) {
     }
   }
 })
+
+function submitScore() {
+  let user = {
+    name: document.getElementsByTagName("input").value,
+    score: score,
+  }
+score.push(user);
+localStorage.setItem("scores", JSON.stringify(score));
+window.location.reload();
+}
+
+
+
+
+
+
+init();
+// function getScores() {
+//   //check local storage for scores array
+//   let score = 
+
+// }
 
 // function take input, 
 
