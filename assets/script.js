@@ -181,6 +181,27 @@ viewScoreBtn.onclick = function () {
   } 
 
 }
+
+
+
+
+
+
+// viewScoreBtn.onclick = function () {
+//   let scoreArr = JSON.parse(localStorage.getItem('userScore') || "[]");
+
+//   for (i=0; i < scoreArr.length; i++) {
+//     let scoreArrItem = document.createElement("li");
+//     scoreArrItem.textContent = (`${scoreArr[i].name}: ${scoreArr[i].score}`);
+//     highScoreList.appendChild(scoreArrItem); 
+//   } 
+
+// }
+
+
+
+
+
 // function displayScores() {
 //   let scoresList = document.createElement("ul");
 //   // loop through scores array and create a list of scores and put them on the page

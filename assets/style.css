@@ -31,11 +31,6 @@ h1, p, #result, #question {
   padding-top: 1em;
 }
 
-#viewScoreBtn {
-  position: absolute;
-  padding-left: 2em;
-  padding-top: 1em;
-}
 
 
 #welcomeScreen, #quiz {
