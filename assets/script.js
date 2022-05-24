@@ -16,6 +16,7 @@ let questionPrompt = document.getElementById('question');
 let score = 0;
 
 let nameInput = document.getElementById('nameInput');
+let highScoreList = document.getElementById('highScoreList');
 
 quizContent.style.display = 'none';
 resultContent.style.display = 'none';
@@ -31,7 +32,7 @@ const questions = [
   },
   {
     ask: 'The condition in an if/else statement is enclosed within _____.',
-    choices: ['" "', '{ }', '( )', '[ ]'],
+    choices: ['" "', '( )', '{ }', '[ ]'],
     answer: '( )'
   },
   {
@@ -122,13 +123,13 @@ answerList.addEventListener("click", function (event) {
   if (event.target.classList.contains('choices')) {
     const choices = event.target.textContent;
     if (choices === questions[currentQuestionIndex].answer) {
-      console.log('correct');
-      feedback.textContent = "correct";
+      console.log('nice, yup');
+      feedback.textContent = "nice, yup";
       score += 2; //number arbiturary
     } else {
-      console.log('incorrect');
+      console.log('💩nope💩');
       timeLeft -= 2;
-      feedback.textContent = "incorrect";
+      feedback.textContent = "💩nope💩";
     };
     if (currentQuestionIndex < questions.length - 1) {
       currentQuestionIndex++;
@@ -144,106 +145,67 @@ answerList.addEventListener("click", function (event) {
       //enter username and push username + score to local storage
       // submitScore();
 
-
     }
   }
-})
-
-// function submitScore() {
-// nameInput.addEventListener('input', name => {
-//   console.log('clickeddd');
-//   let username = document.getElementById('username');
-//   nameInput.textContent = name.target.value;
-// })
-
-// function getScores() {
-//   //check local storage for scores array
-//   let scores = localStorage.getItem(JSON.parse('userScores'));
-//   //if scores exist, return the array
-//   if ('userScores') {
-//     return 'userScores';
-//   } else {
-//     //else return empty array
-//     userScores = [];
-//     return userScores;
-//   }
-// }
-
-function userScore() {
-  let user = {
-    name: nameInput,
-    score: score,
-};
-localStorage.setItem('user', JSON.stringify(nameInput));
-renderScoreBoard();
-}
-
-function renderScoreBoard() {
-  let userScore = JSON.parse(localStorage.getItem('user'));
-}
-
-submitBtn.addEventListener('click', function(event) {
-  event.preventDefault();
-userScore();
-renderScoreBoard();
-console.log(submitBtn);
 });
 
 
+submitBtn.addEventListener("click", function(event) {
+  event.preventDefault();
+  storeScore();
+});
 
-// let nameInput = document.querySelector('#nameinput').value;
-// if (nameInput === "") {
-//   displayMessage("name cannot be blank");
-// } else {
-// displayMessage("input captured");
-// };
-// });
+let latestScoreBoard = [];
 
-//   userScores.push(user);
-//   localStorage.setItem("scores", JSON.stringify(userScores));
-//   window.location.reload();
+function storeScore() {
+  let user = {
+    name: nameInput.value,
+    score: score
+  };
+  console.log(user);
+  latestScoreBoard.push(user);
+  console.log(latestScoreBoard)
+  localStorage.setItem('userScore', JSON.stringify(latestScoreBoard));
   
-//   }
+  // let latestScore = JSON.parse(localStorage.getItem('userScore') || "[]");
+  nameInput.value = '';
+};
 
-//   console.log(submitBtn);
+viewScoreBtn.onclick = function () {
+  let scoreArr = JSON.parse(localStorage.getItem('userScore') || "[]");
 
-// });
+  for (i=0; i < scoreArr.length; i++) {
+    let scoreArrItem = document.createElement("li");
+    scoreArrItem.textContent = (`${scoreArr[i].name}: ${scoreArr[i].score}`);
+    highScoreList.appendChild(scoreArrItem); 
+  } 
 
-//save to local storage
-// let userInfoArr = [];
-
-// function saveToLocal() {
-//   localStorage.setItem ('userScore', nameInput.textContent);
-//   console.log(submitBtn);
-// };
-
-// submitBtn.addEventListener('click', function(event) {
-//   event.preventDefault();
-
-//   let userInfo = {
-//     name: nameInput,
-//     score: score,
-//   };
-
-//   localStorage.setItem ('userScore', nameInput.textContent);
-
-// });
-
-
-// for (let i=0; i < userInfoArr; i++) {
-//   if (userInfoArr.score > userInfoArr[i].score) {
-//     userInfoArr.splice(i, 0, userInfoArr);
-//   }
-
-//   else {
-//   userInfoArr.push(hsObj);
-//   localStorage.setItem('userScore', JSON.stringify(userInfoArr));
-//   }
-// };
+}
+// function displayScores() {
+//   let scoresList = document.createElement("ul");
+//   // loop through scores array and create a list of scores and put them on the page
+//   score.forEach((item) => {
+//     let scoreItem = document.createElement("li");
+//     scoreItem.textContent = `NAME: ${item.name} SCORE: ${item.score}`;
+//     scoresList.appendChild(scoreItem);
+//   });
+//   // append the scoresList to scoreboard screen
+// }
 
 
-// hsArr = [];
 
+
+
+
+
+
+
+
+
+
+
+
+  // window.location.reload(); // page refresh
 
 
       //show score board. have an element to show total. save button to trigger local storage (write). button in form will cause a page refresh (default). have to do prevent. 
@@ -251,17 +213,6 @@ console.log(submitBtn);
       //button to view scoreboard (will look to local storage). then print to page. 
       //form function 
 
-
-
-
-
-
-// init();
-// function getScores() {
-//   //check local storage for scores array
-//   let score = 
-
-// }
 
 // function take input, 
 
