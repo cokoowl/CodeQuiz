@@ -29,9 +29,8 @@ h1, p, #result, #question {
   position: absolute;
   padding-left: 2em;
   padding-top: 1em;
+  font-family: monospace;
 }
-
-
 
 #welcomeScreen, #quiz {
   display: flex;
@@ -41,7 +40,10 @@ h1, p, #result, #question {
 
 #feedback {
   margin-top: 24px;
+  font-family: monospace;
+  text-align: center;
 }
+
 
 button {
   border: 1px solid black;
@@ -57,9 +59,22 @@ button {
   cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>🧠</text></svg>") 16 0,auto; /*!emojicursor.app*/;
 }
 
-/* button[disabled] {
-  background: #c0c7cf;
-} */
+button:hover {
+  background-color: black;
+  color:white;
+}
+
+#viewScoreBtn {
+  border: none;
+  background-color: whitesmoke;
+  box-shadow: none;
+  font-weight: bold;
+  font-family: monospace;
+}
+
+#viewScoreBtn:hover {
+  text-decoration: underline;
+}
 
 
 /* @media (max-width: 500px) {

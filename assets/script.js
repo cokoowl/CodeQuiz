@@ -3,7 +3,7 @@ const rootEl = document.getElementById('root');
 let quizBtn = document.getElementById('startQuiz');
 let submitBtn = document.getElementById('submitBtn');
 let timerEl = document.getElementById('timer');
-let timeLeft = 20; //remember to change
+let timeLeft = 69;
 let answerList = document.getElementById('answerList');
 let feedback = document.getElementById('feedback');
 
@@ -123,8 +123,8 @@ answerList.addEventListener("click", function (event) {
   if (event.target.classList.contains('choices')) {
     const choices = event.target.textContent;
     if (choices === questions[currentQuestionIndex].answer) {
-      console.log('nice, yup');
-      feedback.textContent = "nice, yup";
+      console.log('🚀yup🚀');
+      feedback.textContent = "🚀yup🚀";
       score += 2; //number arbiturary
     } else {
       console.log('💩nope💩');
@@ -171,7 +171,7 @@ function storeScore() {
   nameInput.value = '';
 };
 
-viewScoreBtn.onclick = function () {
+viewScoreBtn.addEventListener("click", function () {
   let scoreArr = JSON.parse(localStorage.getItem('userScore') || "[]");
 
   for (i=0; i < scoreArr.length; i++) {
@@ -180,7 +180,7 @@ viewScoreBtn.onclick = function () {
     highScoreList.appendChild(scoreArrItem); 
   } 
 
-}
+});
 
 
 
