@@ -20,6 +20,7 @@ body {
   padding: 4em;
 }
 
+
 h1, p, #result, #question {
   text-align: center;
   color: black
@@ -44,6 +45,10 @@ h1, p, #result, #question {
   text-align: center;
 }
 
+#answerList {
+  display: flex;
+  justify-content: center;
+}
 
 button {
   border: 1px solid black;
@@ -70,6 +75,7 @@ button:hover {
   box-shadow: none;
   font-weight: bold;
   font-family: monospace;
+  color: black;
 }
 
 #viewScoreBtn:hover {

@@ -123,13 +123,13 @@ answerList.addEventListener("click", function (event) {
   if (event.target.classList.contains('choices')) {
     const choices = event.target.textContent;
     if (choices === questions[currentQuestionIndex].answer) {
-      console.log('🚀yup🚀');
-      feedback.textContent = "🚀yup🚀";
+      console.log('🚀 yup 🚀');
+      feedback.textContent = "🚀 yup 🚀";
       score += 2; //number arbiturary
     } else {
-      console.log('💩nope💩');
+      console.log('💩 nope 💩');
       timeLeft -= 2;
-      feedback.textContent = "💩nope💩";
+      feedback.textContent = "💩 nope 💩";
     };
     if (currentQuestionIndex < questions.length - 1) {
       currentQuestionIndex++;
@@ -142,14 +142,11 @@ answerList.addEventListener("click", function (event) {
       //print score
       scoreOutput.innerHTML = "final score is " + score;
 
-      //enter username and push username + score to local storage
-      // submitScore();
-
     }
   }
 });
 
-
+// button to storeScore
 submitBtn.addEventListener("click", function(event) {
   event.preventDefault();
   storeScore();
@@ -157,6 +154,8 @@ submitBtn.addEventListener("click", function(event) {
 
 let latestScoreBoard = [];
 
+//pushing values to localStorage
+//turning score number into string format
 function storeScore() {
   let user = {
     name: nameInput.value,
@@ -166,11 +165,10 @@ function storeScore() {
   latestScoreBoard.push(user);
   console.log(latestScoreBoard)
   localStorage.setItem('userScore', JSON.stringify(latestScoreBoard));
-  
-  // let latestScore = JSON.parse(localStorage.getItem('userScore') || "[]");
   nameInput.value = '';
 };
 
+//button to view scores from localStoreage on the page in a list 
 viewScoreBtn.addEventListener("click", function () {
   let scoreArr = JSON.parse(localStorage.getItem('userScore') || "[]");
 
@@ -181,73 +179,3 @@ viewScoreBtn.addEventListener("click", function () {
   } 
 
 });
-
-
-
-
-
-
-// viewScoreBtn.onclick = function () {
-//   let scoreArr = JSON.parse(localStorage.getItem('userScore') || "[]");
-
-//   for (i=0; i < scoreArr.length; i++) {
-//     let scoreArrItem = document.createElement("li");
-//     scoreArrItem.textContent = (`${scoreArr[i].name}: ${scoreArr[i].score}`);
-//     highScoreList.appendChild(scoreArrItem); 
-//   } 
-
-// }
-
-
-
-
-
-// function displayScores() {
-//   let scoresList = document.createElement("ul");
-//   // loop through scores array and create a list of scores and put them on the page
-//   score.forEach((item) => {
-//     let scoreItem = document.createElement("li");
-//     scoreItem.textContent = `NAME: ${item.name} SCORE: ${item.score}`;
-//     scoresList.appendChild(scoreItem);
-//   });
-//   // append the scoresList to scoreboard screen
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // window.location.reload(); // page refresh
-
-
-      //show score board. have an element to show total. save button to trigger local storage (write). button in form will cause a page refresh (default). have to do prevent. 
-      //need another array (ie. scores). array of object (name and score). push that object to array of score and save score arrays to local storage. 
-      //button to view scoreboard (will look to local storage). then print to page. 
-      //form function 
-
-
-// function take input, 
-
-//make form function 
-
-// click on the start button to start quiz
-// answer buttons and question will be hidden initially
-//timer will run
-
-
-// content change to first question with 4 options
-//timer starts to run
-//click on button will log true/false as answer
-//true will take user to next question, if answer wrong, time will be deducted THEN take user to next question
-//when all questions are answered, or the timer reaches 0, then game is over
-//when game is over, save initial and score
-// initial and scores will be store in localStorage

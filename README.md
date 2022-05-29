@@ -36,7 +36,7 @@ THEN I can save my initials and my score
 
 The following animation demonstrates the application functionality:
 
-![A user clicks through an interactive coding quiz, then enters initials to save the high score before resetting and starting over.](./Assets/04-web-apis-homework-demo.gif)
+![A user clicks on start to go through a series of coding questions and log their score at the end](./assets/04-coding-quiz-homework.gif)
 
 
 ### Credits
